@@ -9,11 +9,18 @@
 
   --accent1: #242edb;
   --accent2: #3c538e;
+  --lightBlue: #367aff;
 
   --regular-weight: 300;
   --normal-weight: 400;
   --semibold-weight: 500;
   --bold-weight: 600;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
