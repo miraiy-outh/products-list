@@ -1,5 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
+
 :root {
   font-family: "Roboto", Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  background-color: #f9f9f9;
+  color: #232323;
+
+  --accent1: #242edb;
+  --accent2: #3c538e;
+
+  --regular-weight: 300;
+  --normal-weight: 400;
+  --semibold-weight: 500;
+  --bold-weight: 600;
+}
+
+h1 {
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 500;
+  font-size: 40px;
+}
+
+h3 {
+  font-family: "Cairo", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+h4 {
+  font-family: "Cairo", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+h6 {
+  font-family: "Cairo", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
 }
