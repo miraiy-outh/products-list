@@ -19,6 +19,7 @@ const cardStyle = {
   border: "1px solid #ededed",
   borderRadius: "34px",
   background: "linear-gradient(rgba(35, 35, 35, 0.03), rgba(35, 35, 35, 0))",
+  borderImage: "linear-gradient(180deg, #ededed, white) 1",
   boxShadow: "none",
 };
 
