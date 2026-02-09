@@ -10,7 +10,7 @@ const paperStyle = {
   boxShadow: "0 24px 32px rgba(0,0,0,0.04)",
   width: "527px",
 };
-
+// добавить градиент у border
 const cardStyle = {
   display: "flex",
   flexDirection: "column",
@@ -18,9 +18,8 @@ const cardStyle = {
   padding: "48px",
   border: "1px solid #ededed",
   borderRadius: "34px",
-  background: "linear-gradient(rgba(35, 35, 35, 0.03), rgba(35, 35, 35, 0))",
-  borderImage: "linear-gradient(180deg, #ededed, white) 1",
   boxShadow: "none",
+  background: "linear-gradient(rgba(35, 35, 35, 0.03), rgba(35, 35, 35, 0))",
 };
 
 export const AuthPage = () => {
