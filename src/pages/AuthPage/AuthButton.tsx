@@ -11,9 +11,9 @@ const style = {
   width: "100%",
 };
 
-export const AuthButton = () => {
+export const AuthButton = ({ onClick }: { onClick: () => void }) => {
   return (
-    <Button variant="contained" color="primary" sx={style}>
+    <Button variant="contained" color="primary" sx={style} onClick={onClick}>
       Войти
     </Button>
   );
