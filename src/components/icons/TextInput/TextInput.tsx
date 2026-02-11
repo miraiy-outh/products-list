@@ -1,7 +1,12 @@
-import { InputAdornment, InputLabel, OutlinedInput } from "@mui/material";
+import {
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  type CSSProperties,
+} from "@mui/material";
 import styles from "./styles.module.css";
 
-const inputStyle = {
+const inputStyle: CSSProperties = {
   fontSize: "18px",
   padding: "15.5px 16px",
   fontWeight: 400,
@@ -16,7 +21,7 @@ const inputStyle = {
   },
 };
 
-const labelStyle = {
+const labelStyle: CSSProperties = {
   fontSize: "18px",
   fontWeight: 400,
   fontFamily: `"Inter", Arial, sans-serif`,

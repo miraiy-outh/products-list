@@ -1,4 +1,4 @@
-export const ClearIcon = () => {
+export const ClearIcon = ({ currentColor = "#C9C9C9" }) => {
   return (
     <div style={{ width: 24, height: 24 }}>
       <svg
@@ -10,13 +10,13 @@ export const ClearIcon = () => {
       >
         <path
           d="M1.01031 1.00002L15.0103 17"
-          stroke="#C9C9C9"
+          stroke={currentColor}
           strokeWidth="2"
           strokeLinecap="round"
         />
         <path
           d="M15 1.00002L1 17"
-          stroke="#C9C9C9"
+          stroke={currentColor}
           strokeWidth="2"
           strokeLinecap="round"
         />

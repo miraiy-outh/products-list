@@ -1,6 +1,7 @@
+import type { CSSProperties } from "@mui/material";
 import Button from "@mui/material/Button";
 
-const style = {
+const style: CSSProperties = {
   textTransform: "capitalize",
   fontSize: "18px",
   padding: "16px",

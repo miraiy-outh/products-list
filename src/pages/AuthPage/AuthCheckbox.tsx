@@ -1,12 +1,12 @@
-import { Checkbox, FormControlLabel } from "@mui/material";
+import { Checkbox, FormControlLabel, type CSSProperties } from "@mui/material";
 
-const checkboxStyle = {
+const checkboxStyle: CSSProperties = {
   color: "#EDEDED",
   padding: 0,
   marginRight: "10px",
 };
 
-const labelStyle = {
+const labelStyle: CSSProperties = {
   margin: 0,
   "& .MuiFormControlLabel-label": {
     fontSize: "16px",

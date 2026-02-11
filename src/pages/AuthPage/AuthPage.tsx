@@ -1,17 +1,17 @@
 import Card from "@mui/material/Card";
 import { AuthButton } from "./AuthButton";
-import { IconButton, Paper } from "@mui/material";
+import { IconButton, Paper, type CSSProperties } from "@mui/material";
 import styles from "./styles.module.css";
 import { TextInput } from "../../components/icons/TextInput/TextInput";
 import { useState } from "react";
 import { UserIcon } from "../../components/icons/UserIcon";
-import { PasswordInput } from "../../components/PasswordInput";
 import { ClearIcon } from "../../components/icons/ClearIcon";
 import { LogoIcon } from "../../components/icons/LogoIcon";
 import { AuthCheckbox } from "./AuthCheckbox";
 import { DividerWithText } from "./DividerWithText";
+import { PasswordInput } from "../../components/inputs/PasswordInput";
 
-const paperStyle = {
+const paperStyle: CSSProperties = {
   padding: "6px 16px",
   borderRadius: "40px",
   border: "none",
@@ -19,7 +19,7 @@ const paperStyle = {
   width: "527px",
 };
 // добавить градиент у border
-const cardStyle = {
+const cardStyle: CSSProperties = {
   display: "flex",
   flexDirection: "column",
   gap: "32px",
