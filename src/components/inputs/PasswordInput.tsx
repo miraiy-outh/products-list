@@ -1,8 +1,8 @@
 import { IconButton } from "@mui/material";
 import { useState } from "react";
-import { PasswordIcon } from "./icons/PasswordIcon";
-import { TextInput } from "./icons/TextInput/TextInput";
-import { HideIcon } from "./icons/HideIcon";
+import { TextInput } from "../icons/TextInput/TextInput";
+import { PasswordIcon } from "../icons/PasswordIcon";
+import { HideIcon } from "../icons/HideIcon";
 
 type TProps = {
   error: boolean;

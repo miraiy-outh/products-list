@@ -3,7 +3,15 @@ import styles from "./styles.module.css";
 import { RefreshIcon } from "../../../components/icons/RefreshIcon";
 import { ContainedButton } from "../../../components/buttons/ContainedButton";
 import { PlusOutlinedIcon } from "../../../components/icons/PlusOutlinedIcon ";
-import type { CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../components/hooks/storeHooks";
+import {
+  getAllProducts,
+  selectProducts,
+} from "../../../services/productsSlice";
 
 const refreshButtonStyle: CSSProperties = {
   border: "1px solid #ECECEB",
@@ -15,10 +23,19 @@ const refreshButtonStyle: CSSProperties = {
   minWidth: "auto",
 };
 
+const LIMIT = 5;
+
 export const ProductsTable = () => {
+  const dispatch = useAppDispatch();
+  const products = useAppSelector(selectProducts);
+  const [pageNumber, setPageNumber] = useState<number>(1);
   const handleAddProduct = () => {
     // логика добавления товара
   };
+  console.log(products);
+  useEffect(() => {
+    dispatch(getAllProducts({ limit: LIMIT, skip: (pageNumber - 1) * LIMIT }));
+  }, [dispatch, pageNumber]);
 
   return (
     <div className={styles.container}>
