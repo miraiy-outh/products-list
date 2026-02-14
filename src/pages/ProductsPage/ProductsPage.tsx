@@ -2,7 +2,7 @@ import { Header } from "../../components/Header/Header";
 import { useEffect, useState } from "react";
 import useDebounce from "../../components/hooks/useDebounce";
 import styles from "./styles.module.css";
-import { ProductsTable } from "./ProductsTable/ProductsTable";
+import { ProductsBlock } from "./ProductsBlock/ProductsBlock";
 
 export const ProductsPage = () => {
   const [search, setSearch] = useState<string>();
@@ -14,7 +14,7 @@ export const ProductsPage = () => {
   return (
     <div className={styles.paperContainer}>
       <Header search={search} setSearch={setSearch} />
-      <ProductsTable />
+      <ProductsBlock />
     </div>
   );
 };

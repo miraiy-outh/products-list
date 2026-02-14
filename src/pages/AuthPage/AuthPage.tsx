@@ -2,7 +2,7 @@ import Card from "@mui/material/Card";
 import { AuthButton } from "./AuthButton";
 import { IconButton, Paper, type CSSProperties } from "@mui/material";
 import styles from "./styles.module.css";
-import { TextInput } from "../../components/icons/TextInput/TextInput";
+import { TextInput } from "../../components/inputs/TextInput/TextInput";
 import { useState } from "react";
 import { UserIcon } from "../../components/icons/UserIcon";
 import { ClearIcon } from "../../components/icons/ClearIcon";

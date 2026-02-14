@@ -1,6 +1,6 @@
 import { IconButton } from "@mui/material";
 import { useState } from "react";
-import { TextInput } from "../icons/TextInput/TextInput";
+import { TextInput } from "./TextInput/TextInput";
 import { PasswordIcon } from "../icons/PasswordIcon";
 import { HideIcon } from "../icons/HideIcon";
 

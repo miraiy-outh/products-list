@@ -3,15 +3,8 @@ import styles from "./styles.module.css";
 import { RefreshIcon } from "../../../components/icons/RefreshIcon";
 import { ContainedButton } from "../../../components/buttons/ContainedButton";
 import { PlusOutlinedIcon } from "../../../components/icons/PlusOutlinedIcon ";
-import { useEffect, useState, type CSSProperties } from "react";
-import {
-  useAppDispatch,
-  useAppSelector,
-} from "../../../components/hooks/storeHooks";
-import {
-  getAllProducts,
-  selectProducts,
-} from "../../../services/productsSlice";
+import { useState, type CSSProperties } from "react";
+import { ProductsTable } from "./ProductsTable/ProductsTable";
 
 const refreshButtonStyle: CSSProperties = {
   border: "1px solid #ECECEB",
@@ -22,20 +15,12 @@ const refreshButtonStyle: CSSProperties = {
   height: "42px",
   minWidth: "auto",
 };
-
-const LIMIT = 5;
-
-export const ProductsTable = () => {
-  const dispatch = useAppDispatch();
-  const products = useAppSelector(selectProducts);
+// остался поиск, пагинация, cud операции
+export const ProductsBlock = () => {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const handleAddProduct = () => {
     // логика добавления товара
   };
-  console.log(products);
-  useEffect(() => {
-    dispatch(getAllProducts({ limit: LIMIT, skip: (pageNumber - 1) * LIMIT }));
-  }, [dispatch, pageNumber]);
 
   return (
     <div className={styles.container}>
@@ -52,6 +37,7 @@ export const ProductsTable = () => {
           />
         </div>
       </div>
+      <ProductsTable />
     </div>
   );
 };

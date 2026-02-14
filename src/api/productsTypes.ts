@@ -49,4 +49,6 @@ export type TGetProductsResponse = {
 export type TGetProductsPayload = {
   limit: number;
   skip: number;
+  sortBy?: string;
+  order: "asc" | "desc";
 };

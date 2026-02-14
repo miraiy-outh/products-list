@@ -7,7 +7,7 @@ const inputStyle: CSSProperties = {
   fontSize: "14px",
   color: "var(--text-color)",
   padding: "12px 20px",
-  fontWeight: 300,
+  fontWeight: 400,
   fontFamily: `"Inter", Arial, sans-serif`,
   lineHeight: "24px",
   borderRadius: "8px",
@@ -22,7 +22,7 @@ const inputStyle: CSSProperties = {
   "& input::placeholder": {
     color: "#999999",
     opacity: 1,
-    fontWeight: 300,
+    fontWeight: 400,
     fontSize: "14px",
   },
 };
