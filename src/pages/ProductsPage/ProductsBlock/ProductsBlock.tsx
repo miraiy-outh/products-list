@@ -6,6 +6,8 @@ import { PlusOutlinedIcon } from "../../../components/icons/PlusOutlinedIcon ";
 import { useState, type CSSProperties } from "react";
 import { ProductsTable } from "./ProductsTable/ProductsTable";
 import React from "react";
+import { PaginationBlock } from "../PaginationBlock/PaginationBlock";
+import { AddProductModal } from "../AddProductModal/AddProductModal";
 
 const refreshButtonStyle: CSSProperties = {
   border: "1px solid #ECECEB",
@@ -16,31 +18,28 @@ const refreshButtonStyle: CSSProperties = {
   height: "42px",
   minWidth: "auto",
 };
-// остался поиск, пагинация, cud операции
-export const ProductsBlock = React.memo(
-  ({ search = "", skip }: { search?: string; skip: number }) => {
-    const [pageNumber, setPageNumber] = useState<number>(1);
-    const handleAddProduct = () => {
-      // логика добавления товара
-    };
+// остался пагинация, cud операции
+export const ProductsBlock = React.memo(() => {
+  const [openModal, setOpenModal] = useState(false);
 
-    return (
-      <div className={styles.container}>
-        <div className={styles.headerContainer}>
-          <h4>Все позиции</h4>
-          <div className={styles.buttonsContainer}>
-            <Button variant="outlined" sx={refreshButtonStyle}>
-              <RefreshIcon />
-            </Button>
-            <ContainedButton
-              text="Добавить"
-              onClick={handleAddProduct}
-              icon={<PlusOutlinedIcon />}
-            />
-          </div>
+  return (
+    <div className={styles.container}>
+      <div className={styles.headerContainer}>
+        <h4>Все позиции</h4>
+        <div className={styles.buttonsContainer}>
+          <Button variant="outlined" sx={refreshButtonStyle}>
+            <RefreshIcon />
+          </Button>
+          <ContainedButton
+            text="Добавить"
+            onClick={() => setOpenModal(true)}
+            icon={<PlusOutlinedIcon />}
+          />
         </div>
-        <ProductsTable search={search} skip={skip} />
       </div>
-    );
-  },
-);
+      <ProductsTable />
+      <PaginationBlock />
+      <AddProductModal open={openModal} onClose={() => setOpenModal(false)} />
+    </div>
+  );
+});

@@ -5,9 +5,7 @@ export type TProduct = {
   images: string[];
   price: number;
   rating: number;
-  stock: number;
   tags: string[];
   brand: string;
   sku: string;
-  minimumOrderQuantity: number;
 };

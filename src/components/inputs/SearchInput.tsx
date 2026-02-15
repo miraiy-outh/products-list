@@ -1,6 +1,10 @@
 import { IconButton, OutlinedInput, type CSSProperties } from "@mui/material";
 import { SearchIcon } from "../icons/SearchIcon";
 import { ClearIcon } from "../icons/ClearIcon";
+import { useAppDispatch, useAppSelector } from "../hooks/storeHooks";
+import { selectSearch, setSearch } from "../../slices/productsSlice";
+import { useEffect, useState } from "react";
+import useDebounce from "../hooks/useDebounce";
 
 const inputStyle: CSSProperties = {
   gap: "8px",
@@ -27,12 +31,16 @@ const inputStyle: CSSProperties = {
   },
 };
 
-type TProps = {
-  value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
-};
+export const SearchInput = () => {
+  const dispatch = useAppDispatch();
+  const search = useAppSelector(selectSearch);
+  const [value, setValue] = useState(search);
+  const debouncedValue = useDebounce(value, 1000) as string;
 
-export const SearchInput = ({ value, setValue }: TProps) => {
+  useEffect(() => {
+    dispatch(setSearch(debouncedValue));
+  }, [debouncedValue, dispatch]);
+
   return (
     <OutlinedInput
       id={"search"}

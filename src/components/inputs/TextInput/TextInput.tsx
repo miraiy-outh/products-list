@@ -39,6 +39,7 @@ type TProps = {
   icon?: React.ReactNode;
   endIcon?: React.ReactNode;
   type?: "text" | "password";
+  pattern?: RegExp;
 };
 
 export const TextInput = ({
@@ -51,6 +52,7 @@ export const TextInput = ({
   icon,
   endIcon,
   type = "text",
+  pattern,
 }: TProps) => {
   return (
     <div className={styles.inputContainer}>
@@ -62,8 +64,11 @@ export const TextInput = ({
         value={value}
         error={error}
         onChange={(e) => {
-          setValue(e.target.value);
-          if (error && setError) setError(false);
+          const newValue = e.target.value;
+          if (pattern === undefined || pattern.test(newValue)) {
+            setValue(newValue);
+            if (error && setError) setError(false);
+          }
         }}
         startAdornment={
           icon ? (

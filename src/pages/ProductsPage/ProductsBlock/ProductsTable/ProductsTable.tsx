@@ -13,13 +13,24 @@ import { clearObject } from "../../../../utils/clearObject";
 import type { TGetProductsPayload } from "../../../../api/productsTypes";
 import { useGetProductsQuery } from "../../../../api/productsApi";
 import TableSortLabel from "@mui/material/TableSortLabel";
-import { LIMIT, tableLabels } from "../contants";
+import { tableLabels } from "../contants";
 import styles from "./styles.module.css";
 import { cutSubprice } from "../../../../utils/cutSubprice";
 import { TableCheckbox } from "../../../../components/inputs/TableCheckbox";
 import { EditButton } from "../EditButton";
 import { ShowMoreButton } from "../ShowMoreButton/ShowMoreButton";
 import { Loader } from "../../../../components/Loader/Loader";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../../components/hooks/storeHooks";
+import {
+  selectOrder,
+  selectSortBy,
+  setSortBy,
+  selectProductsQueryParams,
+  setOrder,
+} from "../../../../slices/productsSlice";
 
 const styleTableCellHeader = {
   maxWidth: "304.5px",
@@ -48,20 +59,17 @@ const styleSortLabel = {
   marginLeft: "18px",
 };
 
-export const ProductsTable = ({
-  search = "",
-  skip,
-}: {
-  search?: string;
-  skip: number;
-}) => {
-  const [sortBy, setSortBy] = useState<string | undefined>(undefined);
-  const [order, setOrder] = useState<"asc" | "desc">("asc");
+export const ProductsTable = () => {
+  const dispatch = useAppDispatch();
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const savedSortBy = localStorage.getItem("sortBy");
   const savedOrder = localStorage.getItem("order");
   let sortByFromStorage: string | undefined;
   let orderFromStorage: "asc" | "desc" = "asc";
+
+  const sortBy = useAppSelector(selectSortBy);
+  const order = useAppSelector(selectOrder);
+  const queryParams = useAppSelector(selectProductsQueryParams);
 
   try {
     if (savedSortBy) {
@@ -79,10 +87,10 @@ export const ProductsTable = ({
 
   useEffect(() => {
     if (sortByFromStorage) {
-      setSortBy(sortByFromStorage);
+      dispatch(setSortBy(sortByFromStorage));
     }
     if (orderFromStorage) {
-      setOrder(orderFromStorage);
+      dispatch(setOrder(orderFromStorage));
     }
   }, []);
 
@@ -94,43 +102,20 @@ export const ProductsTable = ({
     localStorage.setItem("order", JSON.stringify(order));
   }, [order]);
 
-  const requestData = clearObject<TGetProductsPayload>({
-    search,
-    limit: LIMIT,
-    skip,
-    sortBy,
-    order,
-  });
+  const requestData = clearObject<TGetProductsPayload>(queryParams);
 
   const { data, isFetching } = useGetProductsQuery(requestData, {
     refetchOnMountOrArgChange: true,
   });
-  const products: TProduct[] =
-    data?.products.map((product) => {
-      return {
-        id: product.id,
-        title: product.title,
-        category: product.category,
-        images: product.images,
-        price: product.price,
-        rating: product.rating,
-        stock: product.stock,
-        tags: product.tags,
-        brand: product.brand,
-        sku: product.sku,
-        minimumOrderQuantity: product.minimumOrderQuantity,
-      };
-    }) || [];
-
-  const total = data?.total;
+  const products: TProduct[] = data?.products || [];
 
   const handleSort = (field: string) => {
     if (sortBy === field) {
-      setOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+      dispatch(setOrder(order === "asc" ? "desc" : "asc"));
       return;
     }
-    setSortBy(field);
-    setOrder("asc");
+    dispatch(setSortBy(field));
+    dispatch(setOrder("asc"));
   };
 
   const toggleSelect = (id: number) => {

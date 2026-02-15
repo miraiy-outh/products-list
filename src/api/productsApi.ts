@@ -3,6 +3,8 @@ import type {
   TGetProductsPayload,
   TGetProductsResponse,
 } from "./productsTypes";
+import { mapProductResponseToProduct } from "../utils/mapProductResponseToProduct";
+import type { TProduct } from "../services/types";
 
 export const productsApi = createApi({
   reducerPath: "productsApi",
@@ -11,7 +13,10 @@ export const productsApi = createApi({
   }),
   tagTypes: ["Products"],
   endpoints: (builder) => ({
-    getProducts: builder.query<TGetProductsResponse, TGetProductsPayload>({
+    getProducts: builder.query<
+      { products: TProduct[]; total: number },
+      TGetProductsPayload
+    >({
       query: ({ search, limit, skip, sortBy, order }) => {
         const base = search ? "/products/search" : "/products";
 
@@ -24,6 +29,14 @@ export const productsApi = createApi({
             sortBy,
             order,
           },
+        };
+      },
+      transformResponse: (
+        response: TGetProductsResponse,
+      ): { products: TProduct[]; total: number } => {
+        return {
+          products: response.products.map(mapProductResponseToProduct),
+          total: response.total,
         };
       },
       serializeQueryArgs: ({ endpointName, queryArgs }) => {
