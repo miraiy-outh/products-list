@@ -51,10 +51,7 @@ export const PaginationBlock = () => {
   const totalPages = useAppSelector(selectTotalPages);
   const endedSkip = skip + 20 > totalCount ? totalCount : skip + 20;
 
-  const handleChangePage = (
-    event: React.ChangeEvent<unknown>,
-    page: number,
-  ) => {
+  const handleChangePage = (_: React.ChangeEvent<unknown>, page: number) => {
     dispatch(setSkip((page - 1) * LIMIT));
   };
   return (

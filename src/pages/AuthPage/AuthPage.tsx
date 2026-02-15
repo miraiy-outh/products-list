@@ -49,7 +49,7 @@ export const AuthPage = () => {
 
     setLoading(true);
     try {
-      const res = await login(username, password, isChecked);
+      await login(username, password, isChecked);
       navigate("/products");
     } catch (err) {
       console.error(err);
