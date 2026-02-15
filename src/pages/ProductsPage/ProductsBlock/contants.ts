@@ -5,3 +5,5 @@ export const tableLabels = [
   { title: "Оценка", name: "rating" },
   { title: "Цена, $", name: "price" },
 ];
+
+export const LIMIT = 20;

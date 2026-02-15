@@ -12,14 +12,22 @@ export const productsApi = createApi({
   tagTypes: ["Products"],
   endpoints: (builder) => ({
     getProducts: builder.query<TGetProductsResponse, TGetProductsPayload>({
-      query: (params) => ({
-        url: "/products",
-        params,
-      }),
+      query: ({ search, limit, skip, sortBy, order }) => {
+        const base = search ? "/products/search" : "/products";
+
+        return {
+          url: base,
+          params: {
+            q: search,
+            limit,
+            skip,
+            sortBy,
+            order,
+          },
+        };
+      },
       serializeQueryArgs: ({ endpointName, queryArgs }) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { limit, ...filters } = queryArgs;
-        return `${endpointName}-${JSON.stringify(filters)}`;
+        return `${endpointName}-${JSON.stringify(queryArgs)}`;
       },
       forceRefetch: ({ currentArg, previousArg }) => {
         return (

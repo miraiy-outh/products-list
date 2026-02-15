@@ -28,8 +28,8 @@ const inputStyle: CSSProperties = {
 };
 
 type TProps = {
-  value: string | undefined;
-  setValue: React.Dispatch<React.SetStateAction<string | undefined>>;
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const SearchInput = ({ value, setValue }: TProps) => {

@@ -2,8 +2,8 @@ import { SearchInput } from "../inputs/SearchInput";
 import styles from "./styles.module.css";
 
 type TProps = {
-  search: string | undefined;
-  setSearch: React.Dispatch<React.SetStateAction<string | undefined>>;
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const Header = ({ search, setSearch }: TProps) => {
