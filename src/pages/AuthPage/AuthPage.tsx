@@ -3,14 +3,15 @@ import { AuthButton } from "./AuthButton";
 import { IconButton, Paper, type CSSProperties } from "@mui/material";
 import styles from "./styles.module.css";
 import { TextInput } from "../../components/inputs/TextInput/TextInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserIcon } from "../../components/icons/UserIcon";
 import { ClearIcon } from "../../components/icons/ClearIcon";
 import { LogoIcon } from "../../components/icons/LogoIcon";
 import { AuthCheckbox } from "./AuthCheckbox";
 import { DividerWithText } from "./DividerWithText";
 import { PasswordInput } from "../../components/inputs/PasswordInput";
-
+import { useNavigate } from "react-router-dom";
+import { AUTH_TOKEN_KEY, login } from "../../services/auth";
 const paperStyle: CSSProperties = {
   padding: "6px 16px",
   borderRadius: "40px",
@@ -18,7 +19,7 @@ const paperStyle: CSSProperties = {
   boxShadow: "0 24px 32px rgba(0,0,0,0.04)",
   width: "527px",
 };
-// добавить градиент у border
+
 const cardStyle: CSSProperties = {
   display: "flex",
   flexDirection: "column",
@@ -31,26 +32,44 @@ const cardStyle: CSSProperties = {
 };
 
 export const AuthPage = () => {
-  const [login, setLogin] = useState<string>();
+  const navigate = useNavigate();
+  const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [loginError, setLoginError] = useState<boolean>(false);
   const [passwordError, setPasswordError] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleAuth = () => {
-    const isLoginEmpty = !login?.trim();
-    const isPasswordEmpty = !password?.trim();
+  const handleAuth = async () => {
+    if (username === undefined || password === undefined) {
+      setLoginError(username === undefined);
+      setPasswordError(password === undefined);
+      return;
+    }
 
-    setLoginError(isLoginEmpty);
-    setPasswordError(isPasswordEmpty);
-
-    if (isLoginEmpty || isPasswordEmpty) return;
+    setLoading(true);
+    try {
+      const res = await login(username, password, isChecked);
+      navigate("/products");
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleNavigateToRegistration = () => {
     // переход на страницу создания аккаунта
   };
 
+  useEffect(() => {
+    if (
+      localStorage.getItem(AUTH_TOKEN_KEY) ||
+      sessionStorage.getItem(AUTH_TOKEN_KEY)
+    ) {
+      navigate("/products", { replace: true });
+    }
+  }, []);
   return (
     <div className={styles.paperContainer}>
       <Paper variant="outlined" sx={paperStyle}>
@@ -64,19 +83,19 @@ export const AuthPage = () => {
             <div className={styles.inputsContainer}>
               <TextInput
                 label="Логин"
-                id="login"
+                id="username"
                 error={loginError}
                 setError={setLoginError}
-                value={login}
+                value={username}
                 icon={<UserIcon />}
                 endIcon={
-                  login ? (
-                    <IconButton onClick={() => setLogin("")} edge="end">
+                  username ? (
+                    <IconButton onClick={() => setUsername("")} edge="end">
                       <ClearIcon />
                     </IconButton>
                   ) : undefined
                 }
-                setValue={setLogin}
+                setValue={setUsername}
               />
               <PasswordInput
                 error={passwordError}
@@ -86,7 +105,7 @@ export const AuthPage = () => {
               />
             </div>
             <AuthCheckbox value={isChecked} setValue={setIsChecked} />
-            <AuthButton onClick={handleAuth} />
+            <AuthButton onClick={handleAuth} disabled={loading} />
             <DividerWithText />
           </div>
           <p className={styles.text}>

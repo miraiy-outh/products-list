@@ -12,9 +12,21 @@ const style: CSSProperties = {
   width: "100%",
 };
 
-export const AuthButton = ({ onClick }: { onClick: () => void }) => {
+export const AuthButton = ({
+  onClick,
+  disabled,
+}: {
+  onClick: () => void;
+  disabled: boolean;
+}) => {
   return (
-    <Button variant="contained" color="primary" sx={style} onClick={onClick}>
+    <Button
+      variant="contained"
+      color="primary"
+      sx={style}
+      onClick={onClick}
+      disabled={disabled}
+    >
       Войти
     </Button>
   );

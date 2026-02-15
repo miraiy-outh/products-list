@@ -18,7 +18,7 @@ const refreshButtonStyle: CSSProperties = {
   height: "42px",
   minWidth: "auto",
 };
-// остался пагинация, cud операции
+
 export const ProductsBlock = React.memo(() => {
   const [openModal, setOpenModal] = useState(false);
 

@@ -4,7 +4,7 @@ import type {
   TGetProductsResponse,
 } from "./productsTypes";
 import { mapProductResponseToProduct } from "../utils/mapProductResponseToProduct";
-import type { TProduct } from "../services/types";
+import type { TProduct } from "../types";
 
 export const productsApi = createApi({
   reducerPath: "productsApi",

@@ -20,7 +20,13 @@ const paginationStyle = {
   },
 
   "& .Mui-selected": {
-    backgroundColor: "#797FEA",
+    background: "#797FEA",
+    color: "#fff",
+    border: "1px solid #797FEA",
+  },
+
+  "& .Mui-selected:hover": {
+    background: "#797FEA",
     color: "#fff",
     border: "1px solid #797FEA",
   },

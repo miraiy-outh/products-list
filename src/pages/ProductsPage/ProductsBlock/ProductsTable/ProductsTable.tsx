@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import type { TProduct } from "../../../../services/types";
+import type { TProduct } from "../../../../types";
 import { clearObject } from "../../../../utils/clearObject";
 import type { TGetProductsPayload } from "../../../../api/productsTypes";
 import { useGetProductsQuery } from "../../../../api/productsApi";

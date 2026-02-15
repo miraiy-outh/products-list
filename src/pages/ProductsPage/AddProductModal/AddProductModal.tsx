@@ -15,7 +15,7 @@ import {
   useAppSelector,
 } from "../../../components/hooks/storeHooks";
 import { productsApi } from "../../../api/productsApi";
-import type { TProduct } from "../../../services/types";
+import type { TProduct } from "../../../types";
 import { selectProductsQueryParams } from "../../../slices/productsSlice";
 
 type TProps = {

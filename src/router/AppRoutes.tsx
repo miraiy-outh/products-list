@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { AuthPage } from "../pages/AuthPage/AuthPage";
 import { ProductsPage } from "../pages/ProductsPage/ProductsPage";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 export const AppRoutes = () => {
   return (
@@ -8,7 +9,9 @@ export const AppRoutes = () => {
       <Routes>
         <Route index element={<Navigate to="auth" replace />} />
         <Route path="/auth" element={<AuthPage />} />
-        <Route path="/products" element={<ProductsPage />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/products" element={<ProductsPage />} />
+        </Route>
       </Routes>
     </>
   );

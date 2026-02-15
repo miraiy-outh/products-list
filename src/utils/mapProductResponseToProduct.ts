@@ -1,5 +1,5 @@
 import type { TProductResponse } from "../api/productsTypes";
-import type { TProduct } from "../services/types";
+import type { TProduct } from "../types";
 
 export const mapProductResponseToProduct = (
   data: TProductResponse,
