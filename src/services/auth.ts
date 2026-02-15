@@ -5,12 +5,9 @@ const URL = "https://dummyjson.com";
 export const AUTH_TOKEN_KEY = "authToken";
 
 export const saveToken = (token: string | undefined, remember: boolean) => {
-  console.log("saveToken", token);
-
   if (token === undefined) return;
 
   if (remember) {
-    console.log("remember");
     localStorage.setItem(AUTH_TOKEN_KEY, token);
   } else {
     sessionStorage.setItem(AUTH_TOKEN_KEY, token);
@@ -31,8 +28,6 @@ export const removeToken = () => {
 
 export const isAuthenticated = async (): Promise<boolean> => {
   const token = getToken();
-
-  console.log("isAuthenticated", token);
   if (!token) return false;
 
   try {
@@ -66,9 +61,7 @@ export const login = async (
     );
 
     const token = res.data.accessToken;
-    console.log("token 1", token);
     if (token) saveToken(token, remember);
-    console.log("Login response:", res.data);
     return res.data;
   } catch (err: any) {
     console.error("Login error", err.response?.data || err.message);
