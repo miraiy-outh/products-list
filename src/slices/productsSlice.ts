@@ -1,4 +1,8 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSelector,
+  createSlice,
+  type PayloadAction,
+} from "@reduxjs/toolkit";
 import { LIMIT } from "../pages/ProductsPage/ProductsBlock/contants";
 import type { RootState } from "../store";
 import { productsApi } from "../api/productsApi";
@@ -79,10 +83,19 @@ export const selectCurrentPage = (state: RootState) =>
   Math.floor(state.products.skip / state.products.limit) + 1;
 export const selectTotalPages = (state: RootState) =>
   Math.ceil(state.products.totalCount / state.products.limit);
-export const selectProductsQueryParams = (state: RootState) => ({
-  search: state.products.search,
-  sortBy: state.products.sortBy,
-  order: state.products.order,
-  skip: state.products.skip,
-  limit: state.products.limit,
-});
+export const selectProductsQueryParams = createSelector(
+  [
+    (state: RootState) => state.products.search,
+    (state: RootState) => state.products.sortBy,
+    (state: RootState) => state.products.order,
+    (state: RootState) => state.products.skip,
+    (state: RootState) => state.products.limit,
+  ],
+  (search, sortBy, order, skip, limit) => ({
+    search,
+    sortBy,
+    order,
+    skip,
+    limit,
+  }),
+);
