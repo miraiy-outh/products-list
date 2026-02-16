@@ -20,15 +20,15 @@ const paginationStyle = {
   },
 
   "& .Mui-selected": {
-    backgroundColor: "#797FEA",
+    backgroundColor: "#797FEA !important",
     color: "#fff",
-    border: "1px solid #797FEA",
+    border: "1px solid #797FEA !important",
   },
 
   "& .Mui-selected:hover": {
-    backgroundColor: "#797FEA",
+    backgroundColor: "#797FEA !important",
     color: "#fff",
-    border: "1px solid #797FEA",
+    border: "1px solid #797FEA !important",
   },
 
   "& .MuiPaginationItem-previousNext": {
